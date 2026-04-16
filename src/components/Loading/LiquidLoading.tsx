@@ -28,8 +28,11 @@ export interface LiquidLoadingProps {
 }
 
 /**
+ * LiquidLoading Component
+ * 
  * A full-screen loading component that displays a liquid wave filling up a text mask.
  * It tracks both an artificial minimum time progress and actual asset preloading progress.
+ * The preloading guarantees that all assets defined are fetched before proceeding.
  */
 export const LiquidLoading: React.FC<LiquidLoadingProps> = ({
   text = '',
@@ -97,7 +100,7 @@ export const LiquidLoading: React.FC<LiquidLoadingProps> = ({
   const waveProgress = visualProgress * 1.1;
   const currentYOffset = startY - (waveProgress / 100) * totalTravel;
 
-  // Handle actual asset preloading
+  // Handle actual asset preloading explicitly via Promises
   useEffect(() => {
     if (!assetsToPreload || assetsToPreload.length === 0) {
       setRealProgress(100);
@@ -105,21 +108,32 @@ export const LiquidLoading: React.FC<LiquidLoadingProps> = ({
     }
 
     let isMounted = true;
-    let loadedAssetsCount = 0;
+    let loadedCount = 0;
     const totalAssets = assetsToPreload.length;
 
-    const handleAssetLoad = () => {
-      loadedAssetsCount++;
-      if (isMounted) {
-        setRealProgress((loadedAssetsCount / totalAssets) * 100);
-      }
-    };
+    const loadPromises = assetsToPreload.map((src) => {
+      return new Promise<void>((resolve) => {
+        const img = new window.Image();
+        img.src = src;
 
-    assetsToPreload.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = handleAssetLoad;
-      img.onerror = handleAssetLoad;
+        const onLoadFinished = () => {
+          loadedCount++;
+          if (isMounted) {
+            setRealProgress((loadedCount / totalAssets) * 100);
+          }
+          resolve();
+        };
+
+        img.onload = onLoadFinished;
+        img.onerror = onLoadFinished; // Proceed even on error to avoid indefinite loading
+      });
+    });
+
+    // Ensure state reflects completion
+    Promise.allSettled(loadPromises).then(() => {
+      if (isMounted) {
+        setRealProgress(100);
+      }
     });
 
     return () => {

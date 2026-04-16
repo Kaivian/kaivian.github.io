@@ -17,6 +17,7 @@ export default function Home() {
   useEffect(() => {
     document.body.style.overflow = isAppLoading ? 'hidden' : 'auto';
 
+    // Cập nhật khi di chuyển chuột
     const handleMouseMove = (e: MouseEvent) => {
       setMouseState({
         clientX: e.clientX,
@@ -27,7 +28,17 @@ export default function Home() {
       });
     };
 
+    // Cập nhật khi cuộn trang để đèn pin bám đúng vị trí chuột
+    const handleScroll = () => {
+      setMouseState((prev) => ({
+        ...prev,
+        pageX: prev.clientX + window.scrollX,
+        pageY: prev.clientY + window.scrollY,
+      }));
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -38,6 +49,7 @@ export default function Home() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
       clearInterval(timer);
     };
   }, [isAppLoading]);
@@ -50,8 +62,9 @@ export default function Home() {
     <main className="relative min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden selection:bg-red-900/50">
 
       {/* --- CUSTOM CURSOR & COORDINATES --- */}
+      {/* Thêm 'hidden md:block' để vô hiệu hóa trên màn hình nhỏ */}
       {!isAppLoading && mouseState.isActive && (
-        <div className="pointer-events-none fixed top-0 left-0 z-[100]">
+        <div className="hidden md:block pointer-events-none fixed top-0 left-0 z-100">
           <div
             className="absolute w-2 h-2 bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.8)] transition-transform duration-75 ease-out"
             style={{ transform: `translate(${mouseState.clientX - 3}px, ${mouseState.clientY - 3}px)` }}
@@ -72,12 +85,31 @@ export default function Home() {
 
       {/* 2. Loading Screen */}
       {isAppLoading && (
-        <div className="fixed inset-0 z-[60]">
-          <LiquidLoading text="kaivian" fontFamily="'Inter', sans-serif" backgroundColor="#000000" baseTextColor="#1a1a1a" waveColor="#ef4444" waveDuration={1.5} maxOffset={50} delayBeforeZoom={1000} onFinished={() => setIsAppLoading(false)} />
+        <div className="fixed inset-0 z-60">
+          <LiquidLoading
+            text="kaivian"
+            fontFamily="'Inter', sans-serif"
+            backgroundColor="#000000"
+            baseTextColor="#1a1a1a"
+            waveColor="#ef4444"
+            waveDuration={1.5}
+            maxOffset={50}
+            delayBeforeZoom={1000}
+            assetsToPreload={[
+              '/projects/celia.jpg',
+              '/projects/pancras.jpg',
+              '/projects/2026.jpg',
+              '/projects/ciao.jpg',
+              '/projects/hands.jpg',
+              '/projects/apogee.jpg',
+              '/projects/herzer.jpg',
+            ]}
+            onFinished={() => setIsAppLoading(false)}
+          />
         </div>
       )}
 
-      {/* --- CORNERS UI (Đã đẩy lên z-50 để không bị đèn pin che) --- */}
+      {/* --- CORNERS UI --- */}
       {!isAppLoading && (
         <>
           <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-3 font-mono pointer-events-auto cursor-none">
@@ -114,9 +146,10 @@ export default function Home() {
           ============================================================ */}
       <div className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center z-10 px-4">
 
-        {/* Lớp Flashlight (Đã đẩy lên z-[45] để đè lên phần chữ z-40) */}
+        {/* Lớp Flashlight */}
+        {/* Thêm 'hidden md:block' để ẩn trên màn hình nhỏ */}
         <div
-          className="absolute inset-0 z-[45] pointer-events-none transition-opacity duration-500"
+          className="hidden md:block absolute inset-0 z-45 pointer-events-none transition-opacity duration-500"
           style={{
             background: `radial-gradient(circle 1000px at ${spotlightX} ${spotlightY}, rgba(0,0,0,0) 0%, rgba(5,5,5,0.6) 70%, rgba(0,0,0,0.95) 100%)`
           }}
@@ -143,16 +176,16 @@ export default function Home() {
           </h2>
 
           <div className="max-w-full flex flex-col items-center gap-1 text-center mt-4 px-6 py-4">
-            <ScrambledText className="text-md md:text-base text-gray-400 tracking-wider font-mono" radius={20} duration={1} speed={0.5} scrambleChars=".:">
+            <ScrambledText className="text-md md:text-2xl text-gray-400 tracking-wider font-mono" radius={40}>
               <span className='text-red-500'>Fullstack</span> Developer.<br />
-              <span className='text-red-500'>Backend</span> Rigor & <span className='text-red-500'>Frontend</span> Interactivity.<br />
+              <span className='text-red-500'>Backend</span> Rigor and <span className='text-red-500'>Frontend</span> Interactivity.<br />
               Seeking graduation opportunities.
             </ScrambledText>
           </div>
         </section>
 
         {/* --- LỚP GRADIENT MASK --- */}
-        <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#050505] to-transparent z-50 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-60 bg-linear-to-t from-[#050505] to-transparent z-50 pointer-events-none" />
 
       </div>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import Image from 'next/image';
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
@@ -457,7 +458,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           }}
         />
       )}
-      <div ref={shellRef} className="relative z-[1] group">
+      <div ref={shellRef} className="relative z-1 group">
         <section
           className="grid relative overflow-hidden"
           style={{
@@ -515,8 +516,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 backfaceVisibility: 'hidden'
               }}
             >
-              <img
-                className="w-full absolute left-1/2 bottom-[-1px] will-change-transform transition-transform duration-[120ms] ease-out"
+              <Image
+                className="w-full absolute left-1/2 -bottom-px will-change-transform transition-transform duration-120 ease-out"
                 src={avatarUrl}
                 alt={`${name || 'User'} avatar`}
                 loading="lazy"
@@ -534,7 +535,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               />
               {showUserInfo && (
                 <div
-                  className="absolute z-[2] flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
+                  className="absolute z-2 flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
                   style={
                     {
                       '--ui-inset': '20px',
@@ -550,10 +551,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className="rounded-full overflow-hidden border border-white/10 flex-shrink-0"
+                      className="rounded-full overflow-hidden border border-white/10 shrink-0"
                       style={{ width: '48px', height: '48px' }}
                     >
-                      <img
+                      <Image
                         className="w-full h-full object-cover rounded-full"
                         src={miniAvatarUrl || avatarUrl}
                         alt={`${name || 'User'} mini avatar`}
@@ -586,7 +587,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
             {/* Details content */}
             <div
-              className="max-h-full overflow-hidden text-center relative z-[5]"
+              className="max-h-full overflow-hidden text-center relative z-5"
               style={{
                 transform:
                   'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
