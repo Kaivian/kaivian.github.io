@@ -30,7 +30,8 @@ export function useInfiniteSlider({ dragX, chunkWidth, slideOffset }: UseInfinit
   const normalizeDrag = useCallback(() => {
     if (chunkWidth === 0) return;
     const current = dragX.get();
-    const wrapped = wrap(-2 * chunkWidth, -chunkWidth, current);
+    // Wrap to safe Center Chunk among 5 batches ([-3cw, -2cw])
+    const wrapped = wrap(-3 * chunkWidth, -2 * chunkWidth, current);
     if (current !== wrapped) {
       dragX.set(wrapped);
     }
@@ -113,27 +114,28 @@ export function useInfiniteSlider({ dragX, chunkWidth, slideOffset }: UseInfinit
 
   const slideNext = useCallback(() => {
     if (dragRef.current.controls) dragRef.current.controls.stop();
-    normalizeDrag();
+    // Do NOT normalizeDrag() before animation — the visual wrapping via
+    // useTransform(wrap()) already keeps the rendered position seamless.
+    // Normalizing here caused an instant positional snap (the "jump" bug).
     const startX = dragX.get();
     
     dragRef.current.controls = animate(dragX, startX - slideOffset, { 
       type: "spring", 
       stiffness: 200, 
       damping: 30,
-      onComplete: normalizeDrag 
+      onComplete: normalizeDrag, // Only normalize once animation settles
     });
   }, [dragX, slideOffset, normalizeDrag]);
 
   const slidePrev = useCallback(() => {
     if (dragRef.current.controls) dragRef.current.controls.stop();
-    normalizeDrag();
     const startX = dragX.get();
     
     dragRef.current.controls = animate(dragX, startX + slideOffset, { 
       type: "spring", 
       stiffness: 200, 
       damping: 30,
-      onComplete: normalizeDrag
+      onComplete: normalizeDrag,
     });
   }, [dragX, slideOffset, normalizeDrag]);
 

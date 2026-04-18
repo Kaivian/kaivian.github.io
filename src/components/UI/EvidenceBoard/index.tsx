@@ -66,14 +66,17 @@ export const EvidenceBoard: React.FC = () => {
 
         {/* Content Area */}
         <div className="relative w-full">
-          {/* We render both so we don't fetch/layout data again, but only show one visually */}
-          <EvidenceSlider 
-            dragX={dragX} 
-            triggerNextCb={passSlideNext} 
-            triggerPrevCb={passSlidePrev} 
-            isVisible={viewMode === 'slider'} 
-          />
-          <EvidenceList isVisible={viewMode === 'list'} />
+          {viewMode === 'slider' && (
+            <EvidenceSlider 
+              dragX={dragX} 
+              triggerNextCb={passSlideNext} 
+              triggerPrevCb={passSlidePrev} 
+              isVisible={true} 
+            />
+          )}
+          {viewMode === 'list' && (
+            <EvidenceList />
+          )}
         </div>
       </div>
     </div>
