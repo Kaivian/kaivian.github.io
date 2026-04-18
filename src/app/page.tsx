@@ -9,15 +9,16 @@ import EvidenceBoard from '@/components/UI/EvidenceBoard';
 
 export default function Home() {
   const [isAppLoading, setIsAppLoading] = useState(true);
-
-  // Phân tách clientX (dùng cho cursor cố định) và pageX (dùng cho vùng Hero)
   const [mouseState, setMouseState] = useState({ clientX: 0, clientY: 0, pageX: 0, pageY: 0, isActive: false });
   const [currentTime, setCurrentTime] = useState("00:00:00");
+
+  const appVersion = process.env.NEXT_PUBLIC_APP_VERSION
+    ? `v.${process.env.NEXT_PUBLIC_APP_VERSION}`
+    : "v0.1.0";
 
   useEffect(() => {
     document.body.style.overflow = isAppLoading ? 'hidden' : 'auto';
 
-    // Cập nhật khi di chuyển chuột
     const handleMouseMove = (e: MouseEvent) => {
       setMouseState({
         clientX: e.clientX,
@@ -28,7 +29,6 @@ export default function Home() {
       });
     };
 
-    // Cập nhật khi cuộn trang để đèn pin bám đúng vị trí chuột
     const handleScroll = () => {
       setMouseState((prev) => ({
         ...prev,
@@ -54,15 +54,12 @@ export default function Home() {
     };
   }, [isAppLoading]);
 
-  // Đèn pin
   const spotlightX = mouseState.isActive ? `${mouseState.pageX}px` : '50vw';
   const spotlightY = mouseState.isActive ? `${mouseState.pageY}px` : '50vh';
 
   return (
     <main className="relative min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden selection:bg-red-900/50">
 
-      {/* --- CUSTOM CURSOR & COORDINATES --- */}
-      {/* Thêm 'hidden md:block' để vô hiệu hóa trên màn hình nhỏ */}
       {!isAppLoading && mouseState.isActive && (
         <div className="hidden md:block pointer-events-none fixed top-0 left-0 z-100">
           <div
@@ -78,12 +75,10 @@ export default function Home() {
         </div>
       )}
 
-      {/* 1. Background layer */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <DarkVeil hueShift={-115} noiseIntensity={0} scanlineIntensity={1} speed={1} scanlineFrequency={0} warpAmount={1} resolutionScale={1} />
       </div>
 
-      {/* 2. Loading Screen */}
       {isAppLoading && (
         <div className="fixed inset-0 z-60">
           <LiquidLoading
@@ -109,7 +104,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* --- CORNERS UI --- */}
       {!isAppLoading && (
         <>
           <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-3 font-mono pointer-events-auto cursor-none">
@@ -128,7 +122,7 @@ export default function Home() {
 
           <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-1 font-mono text-[9px] md:text-[10px] tracking-widest text-gray-500 text-right uppercase">
             <div className="flex items-center gap-2">SYS. DIAGNOSTIC <span className="text-red-600">STABLE</span></div>
-            <div>v0.1.0 // © 2026 DOAN THE LUC</div>
+            <div>{appVersion} {'// © 2026 DOAN THE LUC'}</div>
           </div>
 
           <div className="fixed top-6 left-6 z-50 text-[10px] text-red-600 tracking-[0.2em] uppercase opacity-80 flex flex-col gap-1 pointer-events-none">
@@ -141,13 +135,8 @@ export default function Home() {
         </>
       )}
 
-      {/* ============================================================
-          SECTION 1: HERO
-          ============================================================ */}
       <div className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center z-10 px-4">
 
-        {/* Lớp Flashlight */}
-        {/* Thêm 'hidden md:block' để ẩn trên màn hình nhỏ */}
         <div
           className="hidden md:block absolute inset-0 z-45 pointer-events-none transition-opacity duration-500"
           style={{
@@ -184,14 +173,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- LỚP GRADIENT MASK --- */}
         <div className="absolute bottom-0 left-0 w-full h-60 bg-linear-to-t from-[#050505] to-transparent z-50 pointer-events-none" />
-
       </div>
 
-      {/* ============================================================
-          SECTION 2: EVIDENCE BOARD
-          ============================================================ */}
       <EvidenceBoard />
     </main>
   );
