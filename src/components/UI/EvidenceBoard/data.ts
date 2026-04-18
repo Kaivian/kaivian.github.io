@@ -19,11 +19,12 @@ export const PROJECTS_DATA: ProjectData[] = [
 ];
 
 /**
- * Returns a duplicated list of projects mapping left, center, and right versions.
- * This is primarily used for constructing the infinite slider sequence.
+ * Returns a duplicated list of projects mapping 3 segments:
+ * Left Buffer - Active Center - Right Buffer
+ * This ensures bulletproof infinite scrolling by moving jump boundaries away from physical edges.
  */
 export const getTripleProjects = (): ProjectDataWithKey[] => [
-  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-left' })),
-  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-center' })),
-  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-right' }))
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-l' })),
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-c' })),
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-r' }))
 ];
