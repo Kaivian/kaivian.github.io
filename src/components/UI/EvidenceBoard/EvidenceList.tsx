@@ -16,9 +16,8 @@ export interface EvidenceListProps {
  * EvidenceList Component
  * 
  * Provides an alternative, simplified list view to the EvidenceSlider using FlowingMenu.
- * Keeps mounted even when invisible to prevent expensive unmounts and layout shifts.
  */
-export const EvidenceList: React.FC<EvidenceListProps> = React.memo(() => {
+export const EvidenceList: React.FC = React.memo(() => {
 
   const menuItems = useMemo(() => {
     return PROJECTS_DATA.map((project) => ({

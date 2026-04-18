@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, MotionValue, useTransform, wrap } from 'framer-motion';
-import { getTripleProjects } from './data';
+import { getBufferedProjects } from './data';
 import { ProjectDataWithKey } from './types';
 import { useInfiniteSlider } from './useInfiniteSlider';
 
@@ -20,13 +20,13 @@ export const EvidenceSlider: React.FC<EvidenceSliderProps> = React.memo(({ dragX
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  const TRIPLE_PROJECTS = useMemo(() => getTripleProjects(), []);
+  const BUFFERED_PROJECTS = useMemo(() => getBufferedProjects(), []);
 
   const baseWidth = isMobile ? 220 : 400;
   const hoverWidth = isMobile ? 280 : 640;
   const shrunkWidth = isMobile ? 210 : 360;
 
-  const PROJECTS_COUNT = TRIPLE_PROJECTS.length / 3;
+  const PROJECTS_COUNT = BUFFERED_PROJECTS.length / 5;
   const chunkWidth = PROJECTS_COUNT * (baseWidth + 16);
 
   useEffect(() => {
@@ -34,17 +34,19 @@ export const EvidenceSlider: React.FC<EvidenceSliderProps> = React.memo(({ dragX
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       const cw = PROJECTS_COUNT * ((mobile ? 220 : 400) + 16);
-      dragX.set(-1 * cw);
+      if (dragX.get() === 0) {
+        dragX.set(-3 * cw);
+      }
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, [dragX, PROJECTS_COUNT]);
 
-  // Decoupled Visual Axis: Map the infinite dragX strictly within the Center Chunk bounds
+  // Decoupled Visual Axis: Map the infinite dragX strictly within the R1 Chunk bounds
   const visualX = useTransform(dragX, (x) => {
     if (!chunkWidth) return x;
-    return wrap(-2 * chunkWidth, -chunkWidth, x);
+    return wrap(-3 * chunkWidth, -2 * chunkWidth, x);
   });
 
   const { isDragging, onPointerDown, onPointerMove, onPointerUp, onPointerCancel, slideNext, slidePrev } = useInfiniteSlider({
@@ -76,7 +78,7 @@ export const EvidenceSlider: React.FC<EvidenceSliderProps> = React.memo(({ dragX
         onPointerCancel={onPointerCancel}
         className={`flex gap-4 w-max ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
       >
-        {TRIPLE_PROJECTS.map((project: ProjectDataWithKey) => {
+        {BUFFERED_PROJECTS.map((project: ProjectDataWithKey) => {
           const isHovered = !isDragging && hoveredId === project.id;
           const isAnyHovered = !isDragging && hoveredId !== null;
 
@@ -114,11 +116,16 @@ interface EvidenceCardProps {
 
 const EvidenceCard: React.FC<EvidenceCardProps> = React.memo(({
   project, isHovered, isAnyHovered, isDragging, baseWidth, hoverWidth, shrunkWidth, setHoveredId
-}) => (
+}) => {
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  return (
   <motion.div
     layout
     onHoverStart={() => !isDragging && setHoveredId(project.id)}
     onHoverEnd={() => setHoveredId(null)}
+    onViewportEnter={() => setHasLoaded(true)}
+    viewport={{ margin: "1500px" }}
     initial={{ minWidth: baseWidth }}
     animate={{
       minWidth: isHovered ? hoverWidth : isAnyHovered ? shrunkWidth : baseWidth,
@@ -134,11 +141,18 @@ const EvidenceCard: React.FC<EvidenceCardProps> = React.memo(({
 
     <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#050505]/40 to-[#050505] z-10 pointer-events-none" />
 
+    {/* 
+      Preload Strategy:
+      Using framer-motion's viewport API to pre-render the background image.
+      The margin="1500px" buffer means the image natively begins fetching when 
+      the card is within ~2-3 chunks of entering the visible screen. This avoids blocking 
+      the main thread during slider render, significantly improving Time to Interactive.
+    */}
     <motion.div
       animate={{ filter: isHovered ? "grayscale(0%) brightness(1)" : isAnyHovered ? "grayscale(100%) brightness(0.3)" : "grayscale(50%) brightness(0.6)" }}
       transition={{ duration: 0.5 }}
       className="absolute inset-0 pointer-events-none bg-zinc-800"
-      style={{ backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      style={hasLoaded ? { backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
     />
 
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: isHovered ? 1 : 0 }} className="absolute bottom-6 left-6 right-6 h-px bg-red-600/80 shadow-[0_0_10px_#dc2626] z-30" />
@@ -168,6 +182,7 @@ const EvidenceCard: React.FC<EvidenceCardProps> = React.memo(({
       </motion.div>
     </motion.div>
   </motion.div>
-));
+);
+});
 
 EvidenceCard.displayName = 'EvidenceCard';

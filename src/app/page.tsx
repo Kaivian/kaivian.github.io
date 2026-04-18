@@ -2,6 +2,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import LiquidLoading from '@/components/Loading/LiquidLoading';
 import DarkVeil from '@/components/Background/DarkVeil';
 import ScrambledText from '@/components/UI/ScrambledText';
@@ -17,6 +18,12 @@ export default function Home() {
     : "v0.1.0";
 
   useEffect(() => {
+    // Reset scroll on mount
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     document.body.style.overflow = isAppLoading ? 'hidden' : 'auto';
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -104,36 +111,67 @@ export default function Home() {
         </div>
       )}
 
-      {!isAppLoading && (
-        <>
-          <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-3 font-mono pointer-events-auto cursor-none">
-            <div className="text-[10px] md:text-xs text-red-600 tracking-[0.2em] opacity-80">
-              {currentTime} <span className="text-gray-600">ISO 800</span>
+      <AnimatePresence>
+        {!isAppLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut', staggerChildren: 0.2 }}
+          >
+            <div className="fixed top-6 right-6 z-50 flex flex-col items-end gap-3 font-mono pointer-events-auto cursor-none">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 0.8, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="text-[10px] md:text-xs text-red-600 tracking-[0.2em]"
+              >
+                {currentTime} <span className="text-gray-600">ISO 800</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="flex flex-col gap-1 text-[10px] tracking-widest"
+              >
+                <button className="border border-red-900/60 bg-red-900/10 text-red-500 px-2 py-1 hover:bg-red-600 hover:text-white transition-all w-8 text-center relative group cursor-none">
+                  EN<span className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-1 bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+                <button className="border border-gray-800 text-gray-500 px-2 py-1 hover:border-red-900/60 hover:text-red-500 transition-all w-8 text-center relative group cursor-none">
+                  VI<span className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-1 bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              </motion.div>
             </div>
-            <div className="flex flex-col gap-1 text-[10px] tracking-widest">
-              <button className="border border-red-900/60 bg-red-900/10 text-red-500 px-2 py-1 hover:bg-red-600 hover:text-white transition-all w-8 text-center relative group cursor-none">
-                EN<span className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-1 bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-              <button className="border border-gray-800 text-gray-500 px-2 py-1 hover:border-red-900/60 hover:text-red-500 transition-all w-8 text-center relative group cursor-none">
-                VI<span className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-1 bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-            </div>
-          </div>
 
-          <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-1 font-mono text-[9px] md:text-[10px] tracking-widest text-gray-500 text-right uppercase">
-            <div className="flex items-center gap-2">SYS. DIAGNOSTIC <span className="text-red-600">STABLE</span></div>
-            <div>{appVersion} {'// © 2026 DOAN THE LUC'}</div>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-1 font-mono text-[9px] md:text-[10px] tracking-widest text-gray-500 text-right uppercase"
+            >
+              <div className="flex items-center gap-2">SYS. DIAGNOSTIC <span className="text-red-600">STABLE</span></div>
+              <div>{appVersion} {'// © 2026 DOAN THE LUC'}</div>
+            </motion.div>
 
-          <div className="fixed top-6 left-6 z-50 text-[10px] text-red-600 tracking-[0.2em] uppercase opacity-80 flex flex-col gap-1 pointer-events-none">
-            <span>CAM_04 [REC]</span><span className="text-gray-500">SIGNAL_STRONG</span>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="fixed top-6 left-6 z-50 text-[10px] text-red-600 tracking-[0.2em] uppercase opacity-80 flex flex-col gap-1 pointer-events-none"
+            >
+              <span>CAM_04 [REC]</span><span className="text-gray-500">SIGNAL_STRONG</span>
+            </motion.div>
 
-          <div className="fixed bottom-6 left-6 z-50 flex items-center gap-2 text-[10px] text-gray-500 uppercase tracking-widest pointer-events-none">
-            <div className="w-2 h-2 bg-red-600 rounded-none animate-pulse" /> LIVE FEED
-          </div>
-        </>
-      )}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.0, duration: 0.8 }}
+              className="fixed bottom-6 left-6 z-50 flex items-center gap-2 text-[10px] text-gray-500 uppercase tracking-widest pointer-events-none"
+            >
+              <div className="w-2 h-2 bg-red-600 rounded-none animate-pulse" /> LIVE FEED
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center z-10 px-4">
 

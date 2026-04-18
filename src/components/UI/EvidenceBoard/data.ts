@@ -19,12 +19,15 @@ export const PROJECTS_DATA: ProjectData[] = [
 ];
 
 /**
- * Returns a duplicated list of projects mapping 3 segments:
- * Left Buffer - Active Center - Right Buffer
- * This ensures bulletproof infinite scrolling by moving jump boundaries away from physical edges.
+ * Returns a duplicated list of projects mapping 5 segments:
+ * L2 - L1 - Center - R1 - R2
+ * This ensures bulletproof infinite scrolling by adding wider buffer zones
+ * to accommodate ultra-wide screens without visible edge stops.
  */
-export const getTripleProjects = (): ProjectDataWithKey[] => [
-  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-l' })),
+export const getBufferedProjects = (): ProjectDataWithKey[] => [
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-l2' })),
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-l1' })),
   ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-c' })),
-  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-r' }))
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-r1' })),
+  ...PROJECTS_DATA.map(p => ({ ...p, uniqueKey: p.id + '-r2' }))
 ];
