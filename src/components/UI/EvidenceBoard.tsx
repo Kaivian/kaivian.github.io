@@ -1,1 +1,0 @@
-export { EvidenceBoard as default } from './EvidenceBoard/index';
