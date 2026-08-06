@@ -7,6 +7,7 @@ import { Menu, X, ArrowUpRight, MapPin } from "lucide-react";
 export default function Header() {
   const [currentDate, setCurrentDate] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const now = new Date();
@@ -15,6 +16,44 @@ export default function Header() {
     const month = now.toLocaleDateString("en-US", { month: "long" });
     const year = now.getFullYear();
     setCurrentDate(`${dayName} ${day} ${month} ${year}`.toUpperCase());
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ["work", "stack", "contact"];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const handleScrollFallback = () => {
+      if (window.scrollY < 300) {
+        setActiveSection("");
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollFallback, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScrollFallback);
+    };
   }, []);
 
   return (
@@ -89,13 +128,34 @@ export default function Header() {
             {/* Desktop Nav Items & Hire Me Button */}
             <div className="hidden md:flex items-center gap-7">
               <div className="flex items-center gap-8 text-[12px] font-semibold uppercase tracking-[1.44px]">
-                <a href="#work" className="hover:opacity-75 transition-all border-[2.5px] border-transparent hover:border-b-[#1A1A1A]">
+                <a
+                  href="#work"
+                  className={`py-1 border-b-[2.5px] transition-all ${
+                    activeSection === "work"
+                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                  }`}
+                >
                   WORK
                 </a>
-                <a href="#stack" className="hover:opacity-75 transition-all border-[2.5px] border-transparent hover:border-b-[#1A1A1A]">
+                <a
+                  href="#stack"
+                  className={`py-1 border-b-[2.5px] transition-all ${
+                    activeSection === "stack"
+                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                  }`}
+                >
                   STACK
                 </a>
-                <a href="#contact" className="hover:opacity-75 transition-all border-[2.5px] border-transparent hover:border-b-[#1A1A1A]">
+                <a
+                  href="#contact"
+                  className={`py-1 border-b-[2.5px] transition-all ${
+                    activeSection === "contact"
+                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                  }`}
+                >
                   CONTACT
                 </a>
               </div>
@@ -116,16 +176,18 @@ export default function Header() {
             >
               {/* Lucide Menu Icon (visible when closed) */}
               <div
-                className={`absolute transition-all duration-300 ease-in-out transform flex items-center justify-center ${isMenuOpen ? "rotate-90 opacity-0 scale-75" : "rotate-0 opacity-100 scale-100"
-                  }`}
+                className={`absolute transition-all duration-300 ease-in-out transform flex items-center justify-center ${
+                  isMenuOpen ? "rotate-90 opacity-0 scale-75" : "rotate-0 opacity-100 scale-100"
+                }`}
               >
                 <Menu className="w-5 h-5 text-[#1A1A1A]" />
               </div>
 
               {/* Lucide Close X Icon (visible when open) */}
               <div
-                className={`absolute transition-all duration-300 ease-in-out transform flex items-center justify-center ${isMenuOpen ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-75"
-                  }`}
+                className={`absolute transition-all duration-300 ease-in-out transform flex items-center justify-center ${
+                  isMenuOpen ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-75"
+                }`}
               >
                 <X className="w-5 h-5 text-[#1A1A1A]" />
               </div>
@@ -134,10 +196,11 @@ export default function Header() {
 
           {/* Mobile Inline Expanding Menu with smooth transition */}
           <div
-            className={`grid transition-[grid-template-rows,opacity,padding] duration-300 ease-in-out md:hidden ${isMenuOpen
-              ? "grid-rows-[1fr] opacity-100 pt-4 pb-2"
-              : "grid-rows-[0fr] opacity-0 pt-0 pb-0 pointer-events-none"
-              }`}
+            className={`grid transition-[grid-template-rows,opacity,padding] duration-300 ease-in-out md:hidden ${
+              isMenuOpen
+                ? "grid-rows-[1fr] opacity-100 pt-4 pb-2"
+                : "grid-rows-[0fr] opacity-0 pt-0 pb-0 pointer-events-none"
+            }`}
           >
             <div className="overflow-hidden flex flex-col">
               <div className="w-full border-t border-[#1A1A1A]/20 mb-1" />
@@ -145,7 +208,9 @@ export default function Header() {
               <a
                 href="#work"
                 onClick={() => setIsMenuOpen(false)}
-                className="py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group"
+                className={`py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group ${
+                  activeSection === "work" ? "underline underline-offset-4 decoration-2" : ""
+                }`}
               >
                 <span className="font-(family-name:--font-libre-caslon-display) text-3xl text-[#16140F]">
                   Work
@@ -156,7 +221,9 @@ export default function Header() {
               <a
                 href="#stack"
                 onClick={() => setIsMenuOpen(false)}
-                className="py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group"
+                className={`py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group ${
+                  activeSection === "stack" ? "underline underline-offset-4 decoration-2" : ""
+                }`}
               >
                 <span className="font-(family-name:--font-libre-caslon-display) text-3xl text-[#16140F]">
                   Stack
@@ -167,7 +234,9 @@ export default function Header() {
               <a
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group"
+                className={`py-4 border-b border-[#1A1A1A]/20 flex justify-between items-center group ${
+                  activeSection === "contact" ? "underline underline-offset-4 decoration-2" : ""
+                }`}
               >
                 <span className="font-(family-name:--font-libre-caslon-display) text-3xl text-[#16140F]">
                   Contact
