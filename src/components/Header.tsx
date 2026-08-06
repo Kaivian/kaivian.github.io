@@ -73,7 +73,7 @@ export default function Header() {
 
           {/* Masthead Title */}
           <div className="text-center">
-            <h1 className="font-(family-name:--font-libre-caslon-display) text-[40px] md:text-[104px] leading-tight md:leading-[95.68px] tracking-[-1.04px] text-[#16140F] font-normal pt-1.5 select-none">
+            <h1 className="font-(family-name:--font-libre-caslon-display) text-[40px] md:text-[104px] leading-tight md:leading-[95.68px] tracking-[-1.04px] text-[#16140F] font-normal pt-1.5">
               Kaivian Doan
             </h1>
             <p className="md:mt-2.5 md:pb-1.5 text-[8px] md:text-[14px] leading-5 font-semibold uppercase tracking-[2.5px] md:tracking-[6px] text-[#45413a]">
@@ -122,8 +122,8 @@ export default function Header() {
                 <a
                   href="#work"
                   className={`py-1 border-b-[2.5px] transition-all ${activeSection === "work"
-                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
-                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                    ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                    : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
                     }`}
                 >
                   WORK
@@ -131,8 +131,8 @@ export default function Header() {
                 <a
                   href="#stack"
                   className={`py-1 border-b-[2.5px] transition-all ${activeSection === "stack"
-                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
-                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                    ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                    : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
                     }`}
                 >
                   STACK
@@ -140,8 +140,8 @@ export default function Header() {
                 <a
                   href="#contact"
                   className={`py-1 border-b-[2.5px] transition-all ${activeSection === "contact"
-                      ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
-                      : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
+                    ? "border-[#1A1A1A] text-[#16140F] opacity-100 font-bold"
+                    : "border-transparent text-[#45413A] opacity-75 hover:opacity-100 hover:border-[#1A1A1A]"
                     }`}
                 >
                   CONTACT
@@ -183,8 +183,8 @@ export default function Header() {
           {/* Mobile Inline Expanding Menu with smooth transition */}
           <div
             className={`grid transition-[grid-template-rows,opacity,padding] duration-300 ease-in-out md:hidden ${isMenuOpen
-                ? "grid-rows-[1fr] opacity-100 pt-4 pb-2"
-                : "grid-rows-[0fr] opacity-0 pt-0 pb-0 pointer-events-none"
+              ? "grid-rows-[1fr] opacity-100 pt-4 pb-2"
+              : "grid-rows-[0fr] opacity-0 pt-0 pb-0 pointer-events-none"
               }`}
           >
             <div className="overflow-hidden flex flex-col">
