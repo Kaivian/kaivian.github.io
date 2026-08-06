@@ -1,6 +1,7 @@
 "use client";
 
 import { Mail, FileText } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const GithubIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -21,7 +22,7 @@ const LinkedinIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
 export default function Footer() {
   return (
     <footer className="w-full bg-[#16140F] text-[#F4F1EA] font-libre-caslon-text pt-14 pb-8 border-t border-[#33302B]">
-      <div className="max-w-275 mx-auto px-4 md:px-0">
+      <ScrollReveal direction="up" duration={0.8} className="max-w-275 mx-auto px-4 md:px-0">
         {/* Large Name Header */}
         <div className="text-center pb-8">
           <h2 className="font-(family-name:--font-libre-caslon-display) text-[52px] sm:text-[76px] md:text-[88px] font-normal tracking-tight leading-none text-[#F4F1EA]">
@@ -247,7 +248,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </footer>
   );
 }
