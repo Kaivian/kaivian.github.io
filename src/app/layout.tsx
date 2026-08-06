@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Libre_Caslon_Display, Libre_Franklin } from "next/font/google";
+import { Geist, Geist_Mono, Libre_Caslon_Display, Libre_Caslon_Text, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +16,12 @@ const libreCaslonDisplay = Libre_Caslon_Display({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-libre-caslon-display",
+});
+
+const libreCaslonText = Libre_Caslon_Text({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-libre-caslon-text",
 });
 
 const libreFranklin = Libre_Franklin({
@@ -35,9 +41,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonDisplay.variable} ${libreFranklin.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${libreCaslonDisplay.variable} ${libreCaslonText.variable} ${libreFranklin.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
+
