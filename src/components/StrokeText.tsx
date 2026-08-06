@@ -212,8 +212,17 @@ const StrokeText = ({
           onEnter: () => timeline?.play(0)
         });
       } else {
-        timeline.play(0);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (typeof window !== 'undefined' && !(window as any).__PRELOADER_COMPLETE__) {
+          const handlePreloaderComplete = () => {
+            timeline?.play(0);
+          };
+          window.addEventListener('preloaderComplete', handlePreloaderComplete, { once: true });
+        } else {
+          timeline.play(0);
+        }
       }
+
     }
 
     return () => {
