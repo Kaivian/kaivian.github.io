@@ -53,7 +53,7 @@ export default function FrontPageSection() {
                 </a>
                 <a
                   href="#contact"
-                  className="bg-[#F4F1EA] text-[#1A1A1A] border-2 border-[#1A1A1A] px-6 py-3.5 text-[12px] font-bold uppercase tracking-[1.4px] hover:bg-[#1A1A1A] hover:text-[#F4F1EA] transition-colors"
+                  className="bg-[#F4F1EA] text-[#1A1A1A] border-2 border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F4F1EA] transition-colors px-6 py-3.5 text-[12px] font-bold uppercase tracking-[1.4px]"
                 >
                   GET IN TOUCH
                 </a>
