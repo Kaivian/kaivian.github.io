@@ -4,6 +4,7 @@ import SelectedWorksSection from "@/components/SelectedWorksSection";
 import LabReportSection from "@/components/LabReportSection";
 import CareerLedgerSection from "@/components/CareerLedgerSection";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       <LabReportSection />
       <CareerLedgerSection />
       <ContactSection />
+      <Footer />
     </div>
   );
 }
+

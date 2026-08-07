@@ -44,7 +44,7 @@ export default function SelectedWorksSection() {
         <div className="w-full border-b border-[#b9b7b0] mb-4" />
 
         {/* Main Section Header */}
-        <h2 className="font-(family-name:--font-libre-caslon-display) text-[42px] md:text-[68px] font-normal text-[#16140F] leading-none tracking-[-0.02em] mb-4">
+        <h2 className="font-(family-name:--font-libre-caslon-display) text-[32px] md:text-[46px] font-normal text-[#16140F] leading-none tracking-[-0.02em] mb-4">
           Selected Works
         </h2>
 

@@ -11,6 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-libre-caslon: var(--font-libre-caslon-display);
+  --font-libre-caslon-text: var(--font-libre-caslon-text);
   --font-libre-franklin: var(--font-libre-franklin);
 }
 
@@ -18,6 +19,10 @@
   font-family: var(--font-libre-caslon-display), "Libre Caslon Display", serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.libre-caslon-text {
+  font-family: var(--font-libre-caslon-text), "Libre Caslon Text", Georgia, "Times New Roman", serif;
 }
 
 .libre-franklin {
