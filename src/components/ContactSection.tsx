@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { Mail, FileText } from "lucide-react";
+import { Mail, FileText, Loader2, Check } from "lucide-react";
 
 const GithubIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -27,18 +27,56 @@ export default function ContactSection() {
     story: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "d00c3b8a-eb21-4f10-bf9b-381c0cbe2c08";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: web3Key,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `New Letter from ${formData.name}`,
+          message: formData.story,
+          from_name: "Kaivian Portfolio",
+        }),
+      });
+
+      const resData = await response.json();
+      if (resData.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", story: "" });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        triggerMailto();
+      }
+    } catch {
+      triggerMailto();
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const triggerMailto = () => {
     const mailtoSubject = encodeURIComponent(formData.subject || "Inquiry from Portfolio");
     const mailtoBody = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.story}`
     );
     window.location.href = `mailto:theluc.1746@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 4000);
+    setFormData({ name: "", email: "", subject: "", story: "" });
+    setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   return (
@@ -138,9 +176,22 @@ export default function ContactSection() {
                   </div>
                   <button
                     type="submit"
-                    className="bg-[#1A1A1A] hover:bg-[#F4F1EA] text-[#F4F1EA] hover:text-[#1A1A1A] border-[2.5px] border-[#1A1A1A] px-6 py-3 font-mono font-bold text-[12px] uppercase tracking-[1.4px] transition-colors cursor-pointer self-start sm:self-auto"
+                    disabled={isSubmitting}
+                    className="bg-[#1A1A1A] hover:bg-[#F4F1EA] text-[#F4F1EA] hover:text-[#1A1A1A] border-[2.5px] border-[#1A1A1A] px-6 py-3 font-mono font-bold text-[12px] uppercase tracking-[1.4px] transition-colors cursor-pointer self-start sm:self-auto flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed min-w-[170px]"
                   >
-                    {isSubmitted ? "LETTER SENT!" : "SEND THE LETTER"}
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>SENDING...</span>
+                      </>
+                    ) : isSubmitted ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span>LETTER SENT!</span>
+                      </>
+                    ) : (
+                      "SEND THE LETTER"
+                    )}
                   </button>
                 </div>
               </form>
