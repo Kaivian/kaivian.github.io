@@ -34,7 +34,7 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "d00c3b8a-eb21-4f10-bf9b-381c0cbe2c08";
+    const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "c93c7055-9a48-4128-a02c-8696a26d7642";
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -177,7 +177,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#1A1A1A] hover:bg-[#F4F1EA] text-[#F4F1EA] hover:text-[#1A1A1A] border-[2.5px] border-[#1A1A1A] px-6 py-3 font-mono font-bold text-[12px] uppercase tracking-[1.4px] transition-colors cursor-pointer self-start sm:self-auto flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed min-w-[170px]"
+                    className="bg-[#1A1A1A] hover:bg-[#F4F1EA] text-[#F4F1EA] hover:text-[#1A1A1A] border-[2.5px] border-[#1A1A1A] px-6 py-3 font-mono font-bold text-[12px] uppercase tracking-[1.4px] transition-colors cursor-pointer self-start sm:self-auto flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed min-w-42.5"
                   >
                     {isSubmitting ? (
                       <>
