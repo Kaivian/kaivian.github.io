@@ -46,3 +46,38 @@ body {
   color: var(--foreground);
   font-family: var(--font-libre-caslon-display), "Libre Caslon Display", serif;
 }
+
+::selection {
+  background-color: #B93829;
+  color: #F4F1EA;
+}
+
+::-moz-selection {
+  background-color: #B93829;
+  color: #F4F1EA;
+}
+
+/* Custom Broadsheet Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EFECE6;
+  border-left: 1px solid #D8D4CA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B93829;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1A1A1A #EFECE6;
+}
