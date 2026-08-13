@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight, MapPin } from "lucide-react";
+import StrokeText from "./StrokeText";
 
 export default function Header() {
   const [currentDate, setCurrentDate] = useState("");
@@ -72,9 +73,25 @@ export default function Header() {
           <div className="w-full border-[#1A1A1A] border-b-[2.5px]" />
 
           {/* Masthead Title */}
-          <div className="text-center">
-            <h1 className="font-(family-name:--font-libre-caslon-display) text-[40px] md:text-[104px] leading-tight md:leading-[95.68px] tracking-[-1.04px] text-[#16140F] font-normal pt-1.5">
-              Kaivian Doan
+          <div className="text-center pt-1.5 flex flex-col items-center justify-center">
+            <h1 className="w-full flex justify-center">
+              <StrokeText
+                text="Kaivian Doan"
+                strokeColor="#16140F"
+                fillColor="#16140F"
+                strokeWidth={1.8}
+                drawDuration={1.6}
+                fillDelay={0.2}
+                stagger={0.05}
+                ease="power2.out"
+                trigger="mount"
+                fillMode="wipe"
+                fontSize={104}
+                fontWeight={400}
+                letterSpacing={-1}
+                fontFamily="var(--font-libre-caslon-display), serif"
+                className="max-w-175 mx-auto"
+              />
             </h1>
             <p className="md:mt-2.5 md:pb-1.5 text-[8px] md:text-[14px] leading-5 font-semibold uppercase tracking-[2.5px] md:tracking-[6px] text-[#45413a]">
               THE PERSONAL RECORDS OF A FULLSTACK DEVELOPER
