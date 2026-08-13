@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ImageSketchDraw from "./ImageSketchDraw";
 
 export default function FrontPageSection() {
   return (
@@ -108,14 +108,12 @@ export default function FrontPageSection() {
 
           {/* Right Column (Illustration + Article Content) */}
           <div className="md:col-span-8 lg:border-l lg:border-[#1A1A1A] lg:pl-6">
-            {/* Illustration Frame */}
+            {/* Illustration Frame with Drawing Animation */}
             <div className="border-2 border-[#1A1A1A] bg-[#F4F1EA] mb-2">
               <div className="relative w-full h-100 overflow-hidden">
-                <Image
+                <ImageSketchDraw
                   src="/generals/Avatar Style Removed BG.png"
                   alt="The handsome subject"
-                  fill
-                  className="object-cover object-top"
                   priority
                 />
               </div>
