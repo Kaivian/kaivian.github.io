@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
@@ -20,7 +20,22 @@ export default function ImageSketchDraw({
   const containerRef = useRef<HTMLDivElement>(null);
   // Triggers only once when entering view/loading page
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const [isPreloaderDone, setIsPreloaderDone] = useState(false);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).__PRELOADER_COMPLETE__) {
+      setIsPreloaderDone(true);
+    } else {
+      const handleComplete = () => setIsPreloaderDone(true);
+      window.addEventListener("preloaderComplete", handleComplete);
+      return () => window.removeEventListener("preloaderComplete", handleComplete);
+    }
+  }, []);
+
+  const shouldAnimate = isInView && isPreloaderDone;
   const maskId = "brush-mask-once";
 
   return (
@@ -47,7 +62,7 @@ export default function ImageSketchDraw({
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+              animate={shouldAnimate ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             />
 
@@ -59,7 +74,7 @@ export default function ImageSketchDraw({
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+              animate={shouldAnimate ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.55, delay: 0.5, ease: "easeOut" }}
             />
 
@@ -71,7 +86,7 @@ export default function ImageSketchDraw({
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+              animate={shouldAnimate ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.55, delay: 0.9, ease: "easeOut" }}
             />
 
@@ -83,7 +98,7 @@ export default function ImageSketchDraw({
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+              animate={shouldAnimate ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ duration: 0.5, delay: 1.3, ease: "easeOut" }}
             />
 
@@ -93,7 +108,7 @@ export default function ImageSketchDraw({
               height="1"
               fill="#FFF"
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.4, delay: 1.7 }}
             />
           </mask>
@@ -142,10 +157,11 @@ export default function ImageSketchDraw({
           stroke="#1A1A1A"
           strokeWidth="2.5"
           initial={{ pathLength: 0 }}
-          animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+          animate={shouldAnimate ? { pathLength: 1 } : { pathLength: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
         />
       </svg>
     </div>
   );
 }
+

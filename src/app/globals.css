@@ -39,7 +39,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4rem;
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
 }
+
 
 body {
   background: var(--background);
