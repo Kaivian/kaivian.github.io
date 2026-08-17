@@ -115,7 +115,7 @@ export default function PowDContact() {
           {/* Left Block: Direct Booking Terminal & Digital Ecosystem (75% Width) */}
           <div className="w-full lg:w-[80%] space-y-6 relative z-0">
             {/* DIRECT BOOKING DESK Card */}
-            <div className="p-8 md:p-10 lg:p-10 lg:pr-24 xl:pr-28 bg-[#120D09] border border-[#241A13] rounded-sm space-y-6 shadow-2xl relative">
+            <div className="p-8 md:p-10 lg:p-10 lg:pr-24 xl:pr-28 bg-[#120D09] border border-[#241A13] rounded-xs space-y-6 shadow-2xl relative">
               <div>
                 <span className="text-[10px] font-mono text-[#C88639] tracking-widest uppercase block mb-1">
                   DIRECT BOOKING DESK
@@ -179,7 +179,7 @@ export default function PowDContact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Club Apex / John Doe"
-                      className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-none transition-colors rounded-xs"
+                      className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-hidden transition-colors rounded-xs"
                     />
                   </div>
 
@@ -193,17 +193,19 @@ export default function PowDContact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="promoter@venue.com"
-                      className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-none transition-colors rounded-xs"
+                      className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-hidden transition-colors rounded-xs"
                     />
                   </div>
                 </div>
 
                 {/* Custom Styled Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <label className="block text-[10px] font-mono font-bold tracking-widest text-[#8A7D70] uppercase mb-1.5 flex items-center justify-between">
-                    <span>INQUIRY / PERFORMANCE TYPE</span>
-                    <span className="text-[#C88639] text-[9px] font-normal tracking-normal lowercase">[select transmission mode]</span>
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-[10px] font-mono font-bold tracking-widest text-[#8A7D70] uppercase">
+                      INQUIRY / PERFORMANCE TYPE
+                    </label>
+                    <span className="text-[#C88639] text-[9px] font-mono lowercase">[select transmission mode]</span>
+                  </div>
 
                   <button
                     type="button"
@@ -274,7 +276,7 @@ export default function PowDContact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Specify proposed event date, location/city, sound system specs, or collaboration brief..."
-                    className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-none transition-colors rounded-xs resize-y min-h-[90px]"
+                    className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-hidden transition-colors rounded-xs resize-y min-h-[90px]"
                   />
                 </div>
 

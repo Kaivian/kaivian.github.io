@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Activity, Sliders, Disc, Zap } from "lucide-react";
 import { artistProfile } from "@/data/powdData";
 
 export default function PowDSound() {
@@ -16,7 +15,7 @@ export default function PowDSound() {
   return (
     <section id="sound" className="relative py-28 bg-[#0E0B09] text-[#EDE6DD] border-t border-[#1F1610] overflow-hidden">
       {/* Background Architectural Grid & Light Sweep */}
-      <div className="absolute inset-0 bg-[radial-gradient(#C8863908_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-50" />
+      <div className="absolute inset-0 bg-[radial-gradient(#C8863908_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none opacity-50" />
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#C88639]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
@@ -39,7 +38,7 @@ export default function PowDSound() {
               {genres.map((genre, idx) => (
                 <div
                   key={genre.title}
-                  className="group p-6 bg-[#130E0A] hover:bg-[#1C140E] border border-[#241A13] hover:border-[#C88639]/50 rounded-sm transition-all duration-300 shadow-md"
+                  className="group p-6 bg-[#130E0A] hover:bg-[#1C140E] border border-[#241A13] hover:border-[#C88639]/50 rounded-xs transition-all duration-300 shadow-md"
                 >
                   <div className="flex items-baseline justify-between mb-1">
                     <span className="text-[11px] font-mono text-[#C88639] tracking-widest uppercase">
@@ -80,7 +79,7 @@ export default function PowDSound() {
           {/* Right: Artist Cutout breaking boundary & Studio telemetry card */}
           <div className="lg:col-span-5 relative flex flex-col items-center">
             {/* Background Halo Disc */}
-            <div className="relative w-full aspect-[4/5] max-w-md bg-[#130E0A] border border-[#2B2019] rounded-sm p-6 flex flex-col justify-between overflow-hidden shadow-2xl group">
+            <div className="relative w-full aspect-4/5 max-w-md bg-[#130E0A] border border-[#2B2019] rounded-xs p-6 flex flex-col justify-between overflow-hidden shadow-2xl group">
               {/* Glowing Amber Center Disc */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-[#C88639]/20 blur-2xl pointer-events-none group-hover:scale-110 transition-transform duration-500" />
 
@@ -91,7 +90,7 @@ export default function PowDSound() {
               </div>
 
               {/* Cutout Image of Crouched Pose */}
-              <div className="relative w-full h-[380px] sm:h-[420px] z-10 transition-transform duration-500 group-hover:scale-105">
+              <div className="relative w-full h-95 sm:h-105 z-10 transition-transform duration-500 group-hover:scale-105">
                 <Image
                   src="/PowD/cutouts/PowD-Pose-3-cutout.png"
                   alt="PowD Underground Stance"

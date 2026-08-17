@@ -207,13 +207,13 @@ export default function PowDMusic({
         </div>
 
         {/* Flagship Release Highlight Banner */}
-        <div className="mb-16 bg-[#130E0A] border border-[#2B2019] p-6 md:p-10 rounded-sm shadow-xl relative overflow-hidden group">
+        <div className="mb-16 bg-[#130E0A] border border-[#2B2019] p-6 md:p-10 rounded-xs shadow-xl relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C88639]/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Artwork Frame */}
             <div className="lg:col-span-4 relative">
-              <div className="relative aspect-square w-full max-w-sm mx-auto rounded-sm overflow-hidden border border-[#3A2B20] shadow-2xl group-hover:border-[#C88639]/60 transition-colors">
+              <div className="relative aspect-square w-full max-w-sm mx-auto rounded-xs overflow-hidden border border-[#3A2B20] shadow-2xl group-hover:border-[#C88639]/60 transition-colors">
                 <Image
                   src={flagshipTrack.coverImage}
                   alt={flagshipTrack.title}
@@ -323,7 +323,7 @@ export default function PowDMusic({
         {/* Tracks List */}
         <div className="space-y-3">
           {paginatedTracks.length === 0 ? (
-            <div className="py-16 text-center bg-[#120D09] border border-[#241A13] rounded-sm font-mono text-sm text-[#8A7D70]">
+            <div className="py-16 text-center bg-[#120D09] border border-[#241A13] rounded-xs font-mono text-sm text-[#8A7D70]">
               <Disc className="w-8 h-8 text-[#C88639]/50 mx-auto mb-3 animate-spin" />
               NO RELEASES FOUND IN THIS CATEGORY.
             </div>
@@ -335,7 +335,7 @@ export default function PowDMusic({
               return (
                 <div
                   key={track.id}
-                  className={`group flex flex-col md:flex-row md:items-center justify-between p-4 md:p-5 rounded-sm border transition-all duration-200 ${isCurrentPlaying
+                  className={`group flex flex-col md:flex-row md:items-center justify-between p-4 md:p-5 rounded-xs border transition-all duration-200 ${isCurrentPlaying
                       ? "bg-[#1C140E] border-[#C88639]"
                       : "bg-[#120D09]/90 border-[#241A13] hover:border-[#3D2C20] hover:bg-[#18110C]"
                     }`}

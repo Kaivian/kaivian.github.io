@@ -11,12 +11,15 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const now = new Date();
-    const dayName = now.toLocaleDateString("en-US", { weekday: "long" });
-    const day = now.getDate();
-    const month = now.toLocaleDateString("en-US", { month: "long" });
-    const year = now.getFullYear();
-    setCurrentDate(`${dayName} ${day} ${month} ${year}`.toUpperCase());
+    const handle = requestAnimationFrame(() => {
+      const now = new Date();
+      const dayName = now.toLocaleDateString("en-US", { weekday: "long" });
+      const day = now.getDate();
+      const month = now.toLocaleDateString("en-US", { month: "long" });
+      const year = now.getFullYear();
+      setCurrentDate(`${dayName} ${day} ${month} ${year}`.toUpperCase());
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   useEffect(() => {

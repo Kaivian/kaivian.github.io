@@ -54,7 +54,7 @@ export default function PowDMixsets() {
           {mixsets.map((mix) => (
             <div
               key={mix.id}
-              className="bg-[#120D09] border border-[#241A13] hover:border-[#3D2C20] rounded-sm overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-lg"
+              className="bg-[#120D09] border border-[#241A13] hover:border-[#3D2C20] rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-lg"
             >
               {/* Thumbnail Container with Custom Overlay */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0A0705]">
@@ -66,7 +66,7 @@ export default function PowDMixsets() {
                 />
 
                 {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#120D09] via-transparent to-[#0A0705]/60" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#120D09] via-transparent to-[#0A0705]/60" />
 
                 {/* Series Badge */}
                 <div className="absolute top-4 left-4 bg-[#0A0705]/85 backdrop-blur-md border border-[#2B2019] px-3 py-1 text-[11px] font-mono text-[#C88639] tracking-widest uppercase rounded-xs">
@@ -136,7 +136,7 @@ export default function PowDMixsets() {
       {/* Video Modal Cinema Player */}
       {selectedMix && (
         <div className="fixed inset-0 z-50 bg-[#050302]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10">
-          <div className="relative w-full max-w-5xl bg-[#120D09] border border-[#2B2019] rounded-sm overflow-hidden shadow-2xl">
+          <div className="relative w-full max-w-5xl bg-[#120D09] border border-[#2B2019] rounded-xs overflow-hidden shadow-2xl">
             {/* Modal Header */}
             <div className="flex items-center justify-between p-4 bg-[#0A0705] border-b border-[#241A13]">
               <div>
