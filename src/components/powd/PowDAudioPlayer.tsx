@@ -392,9 +392,8 @@ export default function PowDAudioPlayer({
                 className="object-cover"
               />
               <div
-                className={`absolute inset-0 bg-[#C88639]/20 flex items-center justify-center transition-opacity ${
-                  isPlaying ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 bg-[#C88639]/20 flex items-center justify-center transition-opacity ${isPlaying ? "opacity-100" : "opacity-0"
+                  }`}
               >
                 <Disc className="w-4 h-4 text-[#F3EDE4] animate-spin" />
               </div>
@@ -479,7 +478,7 @@ export default function PowDAudioPlayer({
             {/* Scrubber Bar & Waveform with Timers */}
             <div className="w-full flex items-center gap-3">
               {/* Current Time */}
-              <span className="text-[11px] font-mono font-semibold text-[#C88639] min-w-[34px] text-right">
+              <span className="text-[11px] font-mono font-semibold text-[#C88639] min-w-8.5 text-right">
                 {formatTime(currentTime)}
               </span>
 
@@ -503,11 +502,10 @@ export default function PowDAudioPlayer({
                       >
                         <div
                           style={{ height: `${lvl}%` }}
-                          className={`w-full transition-all duration-100 ${
-                            isPlayed
-                              ? "bg-linear-to-t from-[#C88639] to-[#E2A958]"
-                              : "bg-[#33251B]"
-                          }`}
+                          className={`w-full transition-all duration-100 ${isPlayed
+                            ? "bg-linear-to-t from-[#C88639] to-[#E2A958]"
+                            : "bg-[#33251B]"
+                            }`}
                         />
                       </div>
                     );
@@ -525,7 +523,7 @@ export default function PowDAudioPlayer({
                 {/* Scrubber Playhead Handle */}
                 <div
                   style={{ left: `${progress}%` }}
-                  className="absolute bottom-[-1px] -translate-x-1/2 w-3 h-3 rounded-full bg-[#EDE6DD] border-2 border-[#C88639] shadow-md transition-all duration-75 group-hover:scale-125 opacity-0 group-hover:opacity-100"
+                  className="absolute -bottom-px -translate-x-1/2 w-3 h-3 rounded-full bg-[#EDE6DD] border-2 border-[#C88639] shadow-md transition-all duration-75 group-hover:scale-125 opacity-0 group-hover:opacity-100"
                 />
 
                 {/* Hover Position Tooltip */}
@@ -540,7 +538,7 @@ export default function PowDAudioPlayer({
               </div>
 
               {/* Total Duration */}
-              <span className="text-[11px] font-mono text-[#8A7D70] min-w-[34px]">
+              <span className="text-[11px] font-mono text-[#8A7D70] min-w-8.5">
                 {currentTrack.duration || formatTime(totalDurationSeconds)}
               </span>
             </div>

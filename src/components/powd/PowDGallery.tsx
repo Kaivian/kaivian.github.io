@@ -11,7 +11,7 @@ export default function PowDGallery() {
   return (
     <section id="archive" className="relative py-28 bg-[#0D0907] text-[#EDE6DD] border-t border-[#1F1610]">
       {/* Background Subtle Noise Texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(#C8863908_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-40" />
+      <div className="absolute inset-0 bg-[radial-gradient(#C8863908_1px,transparent_1px)] bg-size-[32px_32px] pointer-events-none opacity-40" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}

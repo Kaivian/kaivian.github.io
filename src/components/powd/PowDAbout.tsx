@@ -9,7 +9,7 @@ export default function PowDAbout() {
   return (
     <section id="about" className="relative py-28 bg-[#0A0705] text-[#EDE6DD] border-t border-[#1F1610]">
       {/* Studio Shadow Diagonal Light Beam */}
-      <div className="absolute top-0 right-1/3 w-[400px] h-full bg-linear-to-b from-[#C88639]/5 via-transparent to-transparent -rotate-45 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/3 w-100 h-full bg-linear-to-b from-[#C88639]/5 via-transparent to-transparent -rotate-45 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
@@ -28,7 +28,7 @@ export default function PowDAbout() {
           {/* Left Column: Multi-Frame Photography Spread */}
           <div className="lg:col-span-5 space-y-6">
             {/* Primary Portrait Card */}
-            <div className="relative aspect-[4/5] w-full rounded-xs overflow-hidden border border-[#2B2019] shadow-2xl bg-[#120D09] group">
+            <div className="relative aspect-4/5 w-full rounded-xs overflow-hidden border border-[#2B2019] shadow-2xl bg-[#120D09] group">
               <Image
                 src="/PowD/PowD Avatar 2.png"
                 alt="PowD Editorial Portrait"
@@ -44,7 +44,7 @@ export default function PowDAbout() {
 
             {/* Secondary Supporting Image with Architecture Column */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-[3/4] rounded-xs overflow-hidden border border-[#2B2019] bg-[#120D09]">
+              <div className="relative aspect-3/4 rounded-xs overflow-hidden border border-[#2B2019] bg-[#120D09]">
                 <Image
                   src="/PowD/PowD Pose 8.png"
                   alt="PowD Studio Column"
@@ -72,7 +72,7 @@ export default function PowDAbout() {
           {/* Right Column: Biography, Quote & Gear Setup */}
           <div className="lg:col-span-7 space-y-10">
             {/* Editorial Quote */}
-            <div className="p-8 bg-[#120D09] border-l-2 border-[#C88639] border-y border-r border-[#241A13] rounded-r-xs space-y-3">
+            <div className="p-8 bg-[#120D09] border-l-2 border-[#C88639] border-y border-r rounded-r-xs space-y-3">
               <Quote className="w-8 h-8 text-[#C88639]/40" />
               <p className="text-xl md:text-2xl font-bold text-[#F3EDE4] tracking-tight uppercase font-display leading-snug">
                 “{artistProfile.quotes[0].quote}”

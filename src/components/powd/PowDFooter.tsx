@@ -90,7 +90,7 @@ export default function PowDFooter() {
               <span className="text-[10px] text-[#C4B8A8] block uppercase">STUDIO TIME (GMT+7)</span>
               <span className="text-sm font-bold text-[#E2A958]">{localTime || "00:00:00"}</span>
             </div>
-            <div className="h-6 w-[1px] bg-[#241A13]" />
+            <div className="h-6 w-px bg-[#241A13]" />
             <div>
               <span className="text-[10px] text-[#C4B8A8] block uppercase">STATUS</span>
               <span className="text-[#C88639] flex items-center gap-1">

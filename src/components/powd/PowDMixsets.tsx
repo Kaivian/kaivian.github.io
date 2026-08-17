@@ -12,11 +12,11 @@ export default function PowDMixsets() {
   return (
     <section id="mixsets" className="relative pt-36 pb-28 bg-[#0A0705] text-[#EDE6DD] border-t border-[#1F1610]">
       {/* Subtle Studio Texture */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F161010_1px,transparent_1px),linear-gradient(to_bottom,#1F161010_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F161010_1px,transparent_1px),linear-gradient(to_bottom,#1F161010_1px,transparent_1px)] bg-size-[4rem_4rem] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header with Seated Cutout on Header Line */}
-        <div className="relative flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b-5 border-[#241A13] gap-8 min-h-[140px]">
+        <div className="relative flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b-5 border-[#241A13] gap-8 min-h-35">
           <div className="z-10 flex flex-col sm:flex-row sm:items-end justify-between w-full pr-0 lg:pr-80 gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2 text-[#C88639] font-mono text-xs tracking-widest uppercase">
@@ -57,7 +57,7 @@ export default function PowDMixsets() {
               className="bg-[#120D09] border border-[#241A13] hover:border-[#3D2C20] rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-lg"
             >
               {/* Thumbnail Container with Custom Overlay */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0A0705]">
+              <div className="relative aspect-16/10 w-full overflow-hidden bg-[#0A0705]">
                 <Image
                   src={mix.thumbnailUrl}
                   alt={mix.title}
