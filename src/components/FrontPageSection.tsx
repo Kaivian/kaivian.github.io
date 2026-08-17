@@ -1,24 +1,26 @@
 "use client";
 
 import ImageSketchDraw from "./ImageSketchDraw";
+import ScrollReveal from "./ScrollReveal";
 
 export default function FrontPageSection() {
   return (
     <section className="w-full bg-[#F4F1EA] text-[#1A1A1A] font-libre-franklin pt-6 pb-3 border-[#1A1A1A] border-b-4">
       <div className="max-w-275 mx-auto px-4 md:px-0">
         {/* Top Category Header */}
-        <div className="flex justify-between items-center text-[10px] md:text-[11px] text-[#45413A] font-bold tracking-[1.8px] pb-3 uppercase">
-          <div>FRONT PAGE</div>
-          <div>FILED UNDER: OPEN INVESTIGATIONS</div>
-        </div>
-
-        {/* Top Hairline Divider */}
-        <div className="w-full border-b border-[#b9b7b0] mb-5" />
+        <ScrollReveal direction="down" duration={0.5} distance={15}>
+          <div className="flex justify-between items-center text-[10px] md:text-[11px] text-[#45413A] font-bold tracking-[1.8px] pb-3 uppercase">
+            <div>FRONT PAGE</div>
+            <div>FILED UNDER: OPEN INVESTIGATIONS</div>
+          </div>
+          {/* Top Hairline Divider */}
+          <div className="w-full border-b border-[#b9b7b0] mb-5" />
+        </ScrollReveal>
 
         {/* Main 2-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-20 gap-8 lg:gap-10 items-start">
           {/* Left Column (Hero Title, Quote, Byline, CTA, Stats) */}
-          <div className="lg:col-span-12 flex flex-col justify-between h-full">
+          <ScrollReveal direction="up" delay={0.1} duration={0.8} className="lg:col-span-12 flex flex-col justify-between h-full">
             <div>
               {/* Tag / Subhead */}
               <div className="text-[11px] font-bold uppercase tracking-[2px] text-[#16140F] mb-3">
@@ -104,10 +106,10 @@ export default function FrontPageSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column (Illustration + Article Content) */}
-          <div className="md:col-span-8 lg:border-l lg:border-[#1A1A1A] lg:pl-6">
+          <ScrollReveal direction="up" delay={0.2} duration={0.8} className="md:col-span-8 lg:border-l lg:border-[#1A1A1A] lg:pl-6">
             {/* Illustration Frame with Drawing Animation */}
             <div className="border-2 border-[#1A1A1A] bg-[#F4F1EA] mb-2">
               <div className="relative w-full h-100 overflow-hidden">
@@ -135,7 +137,7 @@ export default function FrontPageSection() {
                 When high-concurrency systems call for it, he reaches for Java, Spring Boot, Redis, and Docker. Through CVerify and Hypixel Network (supporting 30,000+ concurrent players), he builds robust software solutions.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { Mail, FileText, Loader2, Check } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const GithubIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -61,7 +62,8 @@ export default function ContactSection() {
       } else {
         triggerMailto();
       }
-    } catch {
+    } catch (err) {
+      console.error("Web3Forms error, fallback to mailto:", err);
       triggerMailto();
     } finally {
       setIsSubmitting(false);
@@ -82,33 +84,37 @@ export default function ContactSection() {
   return (
     <section id="contact" className="w-full bg-[#F4F1EA] text-[#1A1A1A] font-libre-caslon-text py-16 scroll-mt-16">
       <div className="max-w-275 mx-auto px-4 md:px-0">
-        {/* Top Meta Bar */}
-        <div className="flex justify-between items-center text-[10px] md:text-[11px] text-[#45413A] font-mono font-bold tracking-[1.8px] pb-3 uppercase whitespace-nowrap">
-          <div>SUBMIT A TIP</div>
-          <div>THE DESK IS OPEN FOR SELECT WORK — 2026</div>
-        </div>
+        {/* Top Header Block */}
+        <ScrollReveal direction="up" duration={0.6}>
+          {/* Top Meta Bar */}
+          <div className="flex justify-between items-center text-[10px] md:text-[11px] text-[#45413A] font-mono font-bold tracking-[1.8px] pb-3 uppercase whitespace-nowrap">
+            <div>SUBMIT A TIP</div>
+            <div>THE DESK IS OPEN FOR SELECT WORK — 2026</div>
+          </div>
 
-        {/* Main Section Header */}
-        <h2 className="font-(family-name:--font-libre-caslon-display) text-[32px] md:text-[46px] font-normal text-[#16140F] leading-none tracking-[-0.02em] mb-4">
-          Letters &amp; Commissions
-        </h2>
+          {/* Main Section Header */}
+          <h2 className="font-(family-name:--font-libre-caslon-display) text-[32px] md:text-[46px] font-normal text-[#16140F] leading-none tracking-[-0.02em] mb-4">
+            Letters &amp; Commissions
+          </h2>
 
-        {/* Solid Heavy Divider */}
-        <div className="w-full border-b-[2.5px] border-[#1A1A1A] mb-8" />
+          {/* Solid Heavy Divider */}
+          <div className="w-full border-b-[2.5px] border-[#1A1A1A] mb-8" />
+        </ScrollReveal>
 
         {/* Main 2-Column Contact Container */}
-        <div className="border-2 border-[#1A1A1A] bg-[#F4F1EA] grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#1A1A1A]">
-          {/* Left Column: Form */}
-          <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
-            <div>
-              <h3 className="font-(family-name:--font-libre-caslon-display) text-[26px] sm:text-[30px] font-normal text-[#16140F] leading-tight mb-2">
-                Put it in writing
-              </h3>
-              <p className="font-libre-caslon-text text-[14px] sm:text-[15px] text-[#45413A] leading-relaxed mb-6">
-                A project in mind, a role to fill, or just a good question - send it through and he&apos;ll get back to you.
-              </p>
+        <ScrollReveal direction="up" delay={0.15} duration={0.7}>
+          <div className="border-2 border-[#1A1A1A] bg-[#F4F1EA] grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#1A1A1A]">
+            {/* Left Column: Form */}
+            <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <h3 className="font-(family-name:--font-libre-caslon-display) text-[26px] sm:text-[30px] font-normal text-[#16140F] leading-tight mb-2">
+                  Put it in writing
+                </h3>
+                <p className="font-libre-caslon-text text-[14px] sm:text-[15px] text-[#45413A] leading-relaxed mb-6">
+                  A project in mind, a role to fill, or just a good question - send it through and he&apos;ll get back to you.
+                </p>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
@@ -382,9 +388,10 @@ export default function ContactSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </ScrollReveal>
+    </div>
+  </section>
+);
 }
 
 
