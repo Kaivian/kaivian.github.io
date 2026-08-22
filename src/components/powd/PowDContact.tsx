@@ -96,7 +96,7 @@ export default function PowDContact() {
   return (
     <section id="contact" className="relative py-28 bg-[#0D0907] text-[#EDE6DD] border-t border-[#1F1610] overflow-hidden">
       {/* Ambient Bronze Glow */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#C88639]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-125 h-125 bg-[#C88639]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Massive Headline Callout */}
@@ -276,7 +276,7 @@ export default function PowDContact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Specify proposed event date, location/city, sound system specs, or collaboration brief..."
-                    className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-hidden transition-colors rounded-xs resize-y min-h-[90px]"
+                    className="w-full bg-[#18110C] border border-[#2B2019] focus:border-[#C88639] focus:ring-1 focus:ring-[#C88639] px-3.5 py-2.5 text-xs sm:text-sm font-mono text-[#F3EDE4] placeholder:text-[#5A4F44] focus:outline-hidden transition-colors rounded-xs resize-y min-h-22.5"
                   />
                 </div>
 
@@ -340,14 +340,14 @@ export default function PowDContact() {
           </div>
 
           {/* PowD Cutout - Independent absolute element adjusted via right / bottom */}
-          <div className="relative mt-8 w-full max-w-md mx-auto lg:mx-0 lg:mt-0 lg:max-w-none lg:absolute lg:-bottom-8 lg:right-0 xl:-right-18 lg:w-[600px] lg:h-[780px] pointer-events-none z-10">
+          <div className="relative mt-8 w-full max-w-md mx-auto lg:mx-0 lg:mt-0 lg:max-w-none lg:absolute lg:-bottom-8 lg:right-0 xl:-right-18 lg:w-150 lg:h-195 pointer-events-none z-10">
             {/* Ambient Warm Backlight */}
             <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#C88639]/15 rounded-full blur-3xl pointer-events-none" />
             <Image
               src="/PowD/PowD Pose 8 - BG.png"
               alt="PowD Leaning Portrait"
               fill
-              className="object-contain object-bottom filter drop-shadow-[0_25px_40px_rgba(0,0,0,0.95)] drop-shadow-[0_0_20px_rgba(200,134,57,0.15)] relative z-10"
+              className="object-contain object-bottom filter drop-shadow-[0_25px_40px_rgba(0,0,0,0.95)] relative z-10"
               priority
             />
           </div>

@@ -22,13 +22,13 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
       {/* Background Atmosphere & Ambient Bronze Disc Halo */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Warm Bronze Radial Halo (Derived from PowD Avatar.png) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[600px] md:w-[850px] h-[420px] sm:h-[600px] md:h-[850px] rounded-full bg-[radial-gradient(circle,#C8863935_0%,#8A562418_50%,transparent_75%)] blur-2xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-105 sm:w-150 md:w-212.5 h-105 sm:h-150 md:h-212.5 rounded-full bg-[radial-gradient(circle,#C8863935_0%,#8A562418_50%,transparent_75%)] blur-2xl pointer-events-none" />
 
         {/* Subtle Architectural Light Beam (Derived from PowD Avatar 2.png) */}
-        <div className="absolute -top-32 right-1/4 w-[700px] h-[130%] bg-linear-to-b from-[#E2A958]/10 via-[#C88639]/5 to-transparent -rotate-12 blur-3xl opacity-50 pointer-events-none" />
+        <div className="absolute -top-32 right-1/4 w-175 h-[130%] bg-linear-to-b from-[#E2A958]/10 via-[#C88639]/5 to-transparent -rotate-12 blur-3xl opacity-50 pointer-events-none" />
 
         {/* Studio Grid & Alignment Lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F161020_1px,transparent_1px),linear-gradient(to_bottom,#1F161020_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F161020_1px,transparent_1px),linear-gradient(to_bottom,#1F161020_1px,transparent_1px)] bg-size-[4rem_4rem]" />
       </div>
 
       {/* Top Telemetry Header Row */}
@@ -63,7 +63,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
       {/* Massive Layered Editorial Hero Centerpiece */}
       <div className="relative z-10 my-auto flex flex-col items-center justify-center w-full px-4 select-none py-6">
         {/* Layer 1: Giant Background Typography "POWD" */}
-        <div className="relative w-full max-w-7xl flex items-center justify-center h-[420px] sm:h-[520px] md:h-[640px] lg:h-[740px]">
+        <div className="relative w-full max-w-7xl flex items-center justify-center h-105 sm:h-130 md:h-160 lg:h-185">
           <h1 className="text-[28vw] md:text-[25vw] font-black tracking-tighter leading-none text-[#160F0A] select-none uppercase font-display text-center drop-shadow-2xl">
             POWD
           </h1>
@@ -84,7 +84,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
           </div>
 
           {/* Layer 3: High-Resolution Cutout Artist in Foreground - Proportionally Scaled Up */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[420px] md:w-[540px] lg:w-[640px] h-[430px] sm:h-[550px] md:h-[670px] lg:h-[770px] pointer-events-none z-20">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 sm:w-105 md:w-135 lg:w-160 h-107.5 sm:h-137.5 md:h-167.5 lg:h-192.5 pointer-events-none z-20">
             <Image
               src="/PowD/PowD Pose 4 - BG.png"
               alt="PowD DJ / Electronic Music Producer"
@@ -137,7 +137,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
           {/* Scroll Indicator */}
           <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center gap-2 text-[10px] font-mono text-[#8A7D70]">
             <span className="tracking-widest uppercase">EXPLORE</span>
-            <div className="w-[1px] h-8 bg-linear-to-b from-[#C88639] to-transparent animate-pulse" />
+            <div className="w-px h-8 bg-linear-to-b from-[#C88639] to-transparent animate-pulse" />
           </div>
 
           {/* Quick Play Card */}
