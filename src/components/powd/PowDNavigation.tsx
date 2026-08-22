@@ -28,11 +28,10 @@ export default function PowDNavigation() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
             ? "bg-[#0A0705]/95 backdrop-blur-md border-b border-[#241A13]/80 py-3 shadow-lg"
             : "bg-transparent py-5"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
           {/* Brand Wordmark & ESTD */}
@@ -44,7 +43,7 @@ export default function PowDNavigation() {
               <span className="text-2xl md:text-3xl font-black tracking-tighter font-display uppercase">
                 POWD
               </span>
-              <span className="hidden sm:inline-block text-[10px] font-mono text-[#8A7D70] border border-[#2B2019] px-1.5 py-0.5 rounded tracking-widest">
+              <span className="hidden sm:inline-block text-[10px] font-mono text-[#8A7D70] border border-[#2B2019] px-1.5 py-0.5 rounded-xs tracking-widest">
                 ESTD. 2024
               </span>
             </Link>
@@ -59,7 +58,7 @@ export default function PowDNavigation() {
                 className="text-xs font-mono text-[#C4B8A8] hover:text-[#E2A958] tracking-widest uppercase transition-colors relative py-1 group"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#C88639] transition-all duration-200 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-[#C88639] transition-all duration-200 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -69,7 +68,7 @@ export default function PowDNavigation() {
             {/* Quick Contact CTA */}
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C88639] hover:bg-[#E2A958] text-[#0A0705] text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200 rounded-sm shadow hover:scale-[1.02]"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C88639] hover:bg-[#E2A958] text-[#0A0705] text-xs font-mono font-bold tracking-widest uppercase transition-all duration-200 rounded-xs shadow hover:scale-[1.02]"
             >
               BOOKING
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -78,7 +77,7 @@ export default function PowDNavigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#EDE6DD] hover:text-[#C88639] border border-[#2B2019] bg-[#120D09] rounded-sm transition-colors"
+              className="md:hidden p-2 text-[#EDE6DD] hover:text-[#C88639] border border-[#2B2019] bg-[#120D09] rounded-xs transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -99,7 +98,7 @@ export default function PowDNavigation() {
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-[#EDE6DD] hover:text-[#C88639] border border-[#2B2019] rounded-sm"
+              className="p-2 text-[#EDE6DD] hover:text-[#C88639] border border-[#2B2019] rounded-xs"
               aria-label="Close menu"
             >
               <X className="w-6 h-6" />
@@ -124,7 +123,7 @@ export default function PowDNavigation() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3 bg-[#C88639] text-[#0A0705] font-mono text-sm font-bold tracking-widest uppercase rounded-sm"
+              className="w-full text-center py-3 bg-[#C88639] text-[#0A0705] font-mono text-sm font-bold tracking-widest uppercase rounded-xs"
             >
               BOOKING INQUIRY
             </a>

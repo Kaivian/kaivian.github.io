@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import { WorkItem } from "@/types/work";
 import { works } from "@/data/works";
 import { RenderPreviewContent } from "./RenderPreviewContent";

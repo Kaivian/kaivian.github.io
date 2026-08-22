@@ -307,7 +307,7 @@ export default function PowDAudioPlayer({
         <div className="bg-[#120D09]/98 backdrop-blur-xl border-t border-[#2C2119] px-6 py-6 max-w-7xl mx-auto shadow-2xl transition-all duration-300">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-3 flex items-center gap-4">
-              <div className="relative w-20 h-20 rounded-sm overflow-hidden border border-[#3A2B20] shrink-0">
+              <div className="relative w-20 h-20 rounded-xs overflow-hidden border border-[#3A2B20] shrink-0">
                 <Image
                   src={currentTrack.coverImage}
                   alt={currentTrack.title}
@@ -333,15 +333,15 @@ export default function PowDAudioPlayer({
                 {currentTrack.description}
               </p>
               <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-mono">
-                <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#E2A958] rounded">
+                <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#E2A958] rounded-xs">
                   {currentTrack.genre}
                 </span>
                 {currentTrack.likes !== undefined && (
-                  <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#E2A958] rounded">
+                  <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#E2A958] rounded-xs">
                     LIKES: {currentTrack.likes}
                   </span>
                 )}
-                <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#8A7D70] rounded">
+                <span className="px-2 py-0.5 bg-[#1E1712] border border-[#3A2B20] text-[#8A7D70] rounded-xs">
                   DURATION: {currentTrack.duration}
                 </span>
               </div>
@@ -384,7 +384,7 @@ export default function PowDAudioPlayer({
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Left: Track Info */}
           <div className="flex items-center gap-3 min-w-0 md:w-1/4">
-            <div className="relative w-11 h-11 rounded-sm overflow-hidden border border-[#3A2B20] shrink-0 bg-[#1A130E]">
+            <div className="relative w-11 h-11 rounded-xs overflow-hidden border border-[#3A2B20] shrink-0 bg-[#1A130E]">
               <Image
                 src={currentTrack.coverImage}
                 alt={currentTrack.title}
@@ -532,7 +532,7 @@ export default function PowDAudioPlayer({
                 {hoverPosition && (
                   <div
                     style={{ left: `${hoverPosition.x}px` }}
-                    className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 bg-[#1F1711] border border-[#3A2B20] text-[#E2A958] text-[10px] font-mono rounded shadow-lg pointer-events-none whitespace-nowrap"
+                    className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 bg-[#1F1711] border border-[#3A2B20] text-[#E2A958] text-[10px] font-mono rounded-xs shadow-lg pointer-events-none whitespace-nowrap"
                   >
                     {hoverPosition.time}
                   </div>
@@ -576,7 +576,7 @@ export default function PowDAudioPlayer({
 
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1A130E] hover:bg-[#251B14] border border-[#33251B] text-[#C4B8A8] hover:text-[#F3EDE4] text-xs font-mono transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-[#1A130E] hover:bg-[#251B14] border border-[#33251B] text-[#C4B8A8] hover:text-[#F3EDE4] text-xs font-mono transition-colors"
             >
               <span className="hidden sm:inline">{isExpanded ? "COLLAPSE" : "DETAILS"}</span>
               {isExpanded ? (

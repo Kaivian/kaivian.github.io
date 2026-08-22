@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Maximize2, X, Sparkles, Camera } from "lucide-react";
+import { Maximize2, X, Camera } from "lucide-react";
 import { galleryItems } from "@/data/powdData";
 
 export default function PowDGallery() {
@@ -37,7 +37,7 @@ export default function PowDGallery() {
           {galleryItems.map((item) => (
             <div
               key={item.id}
-              className={`${item.span} group relative bg-[#130E0A] border border-[#241A13] hover:border-[#3D2C20] rounded-sm overflow-hidden transition-all duration-300 shadow-xl`}
+              className={`${item.span} group relative bg-[#130E0A] border border-[#241A13] hover:border-[#3D2C20] rounded-xs overflow-hidden transition-all duration-300 shadow-xl`}
             >
               {/* Image Container */}
               <div className={`relative ${item.aspectRatio} w-full overflow-hidden bg-[#0A0705]`}>
@@ -49,7 +49,7 @@ export default function PowDGallery() {
                 />
 
                 {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0E0B09]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#0E0B09]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Hover Maximize Trigger */}
                 <button
@@ -61,7 +61,7 @@ export default function PowDGallery() {
                 </button>
 
                 {/* Bottom Caption Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                   <span className="text-[10px] font-mono text-[#C88639] tracking-widest uppercase block mb-1">
                     {item.caption}
                   </span>

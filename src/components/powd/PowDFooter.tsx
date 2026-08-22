@@ -51,7 +51,7 @@ export default function PowDFooter() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 bg-[#0E0A07] hover:bg-[#160F0A] border border-[#1F1610] hover:border-[#C88639]/50 rounded-xs flex flex-col justify-between gap-3 transition-all group shadow-sm hover:shadow-md"
+                className="p-4 bg-[#0E0A07] hover:bg-[#160F0A] border border-[#1F1610] hover:border-[#C88639]/50 rounded-xs flex flex-col justify-between gap-3 transition-all group shadow-xs hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-[#F3EDE4] group-hover:text-[#E2A958] font-mono tracking-wider transition-colors">
@@ -75,7 +75,7 @@ export default function PowDFooter() {
               <span className="text-2xl font-black text-[#F3EDE4] tracking-tighter uppercase font-display">
                 POWD
               </span>
-              <span className="text-[10px] font-mono text-[#C88639] border border-[#2B2019] px-1.5 py-0.5 rounded tracking-widest">
+              <span className="text-[10px] font-mono text-[#C88639] border border-[#2B2019] px-1.5 py-0.5 rounded-xs tracking-widest">
                 ESTD. 2024
               </span>
             </div>

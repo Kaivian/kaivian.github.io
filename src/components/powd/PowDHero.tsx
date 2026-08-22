@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { Play, ArrowDown, Disc, Radio, Sparkles } from "lucide-react";
-import { artistProfile, releaseTracks } from "@/data/powdData";
+import { Play, Radio } from "lucide-react";
+import { releaseTracks } from "@/data/powdData";
 import { ReleaseTrack } from "@/types/powd";
 
 interface PowDHeroProps {
@@ -25,7 +25,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[600px] md:w-[850px] h-[420px] sm:h-[600px] md:h-[850px] rounded-full bg-[radial-gradient(circle,#C8863935_0%,#8A562418_50%,transparent_75%)] blur-2xl pointer-events-none" />
 
         {/* Subtle Architectural Light Beam (Derived from PowD Avatar 2.png) */}
-        <div className="absolute -top-32 right-1/4 w-[700px] h-[130%] bg-gradient-to-b from-[#E2A958]/10 via-[#C88639]/5 to-transparent -rotate-12 blur-3xl opacity-50 pointer-events-none" />
+        <div className="absolute -top-32 right-1/4 w-[700px] h-[130%] bg-linear-to-b from-[#E2A958]/10 via-[#C88639]/5 to-transparent -rotate-12 blur-3xl opacity-50 pointer-events-none" />
 
         {/* Studio Grid & Alignment Lines */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F161020_1px,transparent_1px),linear-gradient(to_bottom,#1F161020_1px,transparent_1px)] bg-[size:4rem_4rem]" />
@@ -95,7 +95,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
           </div>
 
           {/* Layer 4: Floating Subtle Metadata Badges */}
-          <div className="hidden lg:block absolute left-8 top-1/4 z-10 bg-[#0E0B09]/90 backdrop-blur-md border border-[#2B2019] p-4 rounded-sm max-w-xs shadow-2xl">
+          <div className="hidden lg:block absolute left-8 top-1/4 z-10 bg-[#0E0B09]/90 backdrop-blur-md border border-[#2B2019] p-4 rounded-xs max-w-xs shadow-2xl">
             <span className="text-[9px] font-mono text-[#C88639] tracking-widest block uppercase mb-1">
               [ ARTIST DIRECTIVE ]
             </span>
@@ -104,7 +104,7 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
             </p>
           </div>
 
-          <div className="hidden lg:block absolute right-8 bottom-1/4 z-10 bg-[#0E0B09]/90 backdrop-blur-md border border-[#2B2019] p-4 rounded-sm shadow-2xl text-right">
+          <div className="hidden lg:block absolute right-8 bottom-1/4 z-10 bg-[#0E0B09]/90 backdrop-blur-md border border-[#2B2019] p-4 rounded-xs shadow-2xl text-right">
             <span className="text-[9px] font-mono text-[#C88639] tracking-widest block uppercase mb-1">
               [ SIGNATURE DISCOGRAPHY ]
             </span>
@@ -137,12 +137,12 @@ export default function PowDHero({ onPlayTrack, isPlaying }: PowDHeroProps) {
           {/* Scroll Indicator */}
           <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center gap-2 text-[10px] font-mono text-[#8A7D70]">
             <span className="tracking-widest uppercase">EXPLORE</span>
-            <div className="w-[1px] h-8 bg-gradient-to-b from-[#C88639] to-transparent animate-pulse" />
+            <div className="w-[1px] h-8 bg-linear-to-b from-[#C88639] to-transparent animate-pulse" />
           </div>
 
           {/* Quick Play Card */}
           <div className="md:col-span-5 flex items-center justify-start md:justify-end gap-3">
-            <div className="flex items-center gap-3 bg-[#130E0A] hover:bg-[#1C150F] border border-[#2B2019] hover:border-[#423226] p-2.5 rounded-sm transition-all shadow-md group">
+            <div className="flex items-center gap-3 bg-[#130E0A] hover:bg-[#1C150F] border border-[#2B2019] hover:border-[#423226] p-2.5 rounded-xs transition-all shadow-md group">
               <div className="relative w-12 h-12 rounded-xs overflow-hidden border border-[#3A2B20] shrink-0">
                 <Image
                   src={latestTrack.coverImage}

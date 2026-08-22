@@ -20,19 +20,18 @@ export default function ImageSketchDraw({
   const containerRef = useRef<HTMLDivElement>(null);
   // Triggers only once when entering view/loading page
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
-  const [isPreloaderDone, setIsPreloaderDone] = useState(false);
+  const [isPreloaderDone, setIsPreloaderDone] = useState(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return typeof window !== "undefined" && !!(window as any).__PRELOADER_COMPLETE__;
+  });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if ((window as any).__PRELOADER_COMPLETE__) {
-      setIsPreloaderDone(true);
-    } else {
-      const handleComplete = () => setIsPreloaderDone(true);
-      window.addEventListener("preloaderComplete", handleComplete);
-      return () => window.removeEventListener("preloaderComplete", handleComplete);
-    }
+    if (typeof window === "undefined" || (window as any).__PRELOADER_COMPLETE__) return;
+
+    const handleComplete = () => setIsPreloaderDone(true);
+    window.addEventListener("preloaderComplete", handleComplete);
+    return () => window.removeEventListener("preloaderComplete", handleComplete);
   }, []);
 
   const shouldAnimate = isInView && isPreloaderDone;

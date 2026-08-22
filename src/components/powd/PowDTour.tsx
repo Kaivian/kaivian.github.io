@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Calendar, MapPin, ArrowUpRight, Radio } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import { tourDates } from "@/data/powdData";
 
 export default function PowDTour() {
